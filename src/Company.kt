@@ -81,22 +81,22 @@ fun main() {
             task("task 1") {
                 manager("John") {
                     experience = 7
-                    soft {
+                    softSkills {
                         "Leadership" level 6
                         "Problem-solving" level 9
                     }
-                    technicals {
+                    technicalSkills {
                         "Java" level 5
                         "Kotlin" level 5
                     }
                 }
-                dev("Mike") {
+                developer("Mike") {
                     experience = 3
-                    soft {
+                    softSkills {
                         "Teamwork" level 5
                         "Critical thinking" level 7
                     }
-                    technicals {
+                    technicalSkills {
                         "Java" level 7
                         "Kotlin" level 9
                         "Spring" level 8
@@ -108,6 +108,6 @@ fun main() {
         threshold = 0.5
     }
 
-    projectWithoutDsl.outcome
-    projectWithDsl.outcome
+    projectWithoutDsl.printProjectMessage()
+    projectWithDsl.printProjectMessage()
 }

@@ -8,7 +8,7 @@ private enum class Profession {
 private data class Employee(
     val name: String,
     val profession: Profession,
-    var experience: Int,
+    val experience: Int,
     val technicalSkills: List<TechnicalSkill>,
     val softSkills: List<SoftSkill>
 )
@@ -28,12 +28,12 @@ private data class Task(
     val employee1: Employee,
     val employee2: Employee,
     val difficulty: Int,
-    val outcome: Boolean
+    val result: Boolean
 )
 
 private data class Project(
     val name: String,
     val tasks: List<Task>,
     val threshold: Double,
-    val outcome: Boolean
+    val result: Boolean
 )

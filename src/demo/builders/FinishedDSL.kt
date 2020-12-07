@@ -15,7 +15,7 @@ class ProjectBuilder {
         tasks.addAll(TasksList().apply(block))
     }
 
-    fun build() = Project(name, tasks, threshold)
+    internal fun build() = Project(name, tasks, threshold)
 }
 
 class TaskBuilder(private val name: String) {
@@ -30,7 +30,7 @@ class TaskBuilder(private val name: String) {
         ).apply(block).build()
     }
 
-    fun dev(name: String, block: EmployBuilder.() -> Unit) {
+    fun developer(name: String, block: EmployBuilder.() -> Unit) {
         employee2 = EmployBuilder(
             name,
             Profession.DEV
@@ -38,7 +38,7 @@ class TaskBuilder(private val name: String) {
 
     }
 
-    fun build() = Task(name, employee1, employee2, difficulty)
+    internal fun build() = Task(name, employee1, employee2, difficulty)
 }
 
 class EmployBuilder(private val name: String, private val profession: Profession) {
@@ -46,29 +46,26 @@ class EmployBuilder(private val name: String, private val profession: Profession
     private val technicalSkills = mutableListOf<TechnicalSkill>()
     private val softSkills = mutableListOf<SoftSkill>()
 
-    fun soft(block: SoftSkillsList.() -> Unit) {
+    fun softSkills(block: SoftSkillsList.() -> Unit) {
         softSkills.addAll(SoftSkillsList().apply(block))
     }
 
-    fun technicals(block: TechnicalSkillsList.() -> Unit) {
+
+    fun technicalSkills(block: TechnicalSkillsList.() -> Unit) {
         technicalSkills.addAll(TechnicalSkillsList().apply(block))
     }
 
-    fun build() = Employee(name, profession, experience, technicalSkills, softSkills)
+    internal fun build() = Employee(name, profession, experience, technicalSkills, softSkills)
 }
 
 class TasksList : ArrayList<Task>() {
-    fun task(name: String, block: TaskBuilder.() -> Unit) {
-        add(TaskBuilder(name).apply(block).build())
-    }
+    internal fun task(name: String, block: TaskBuilder.() -> Unit) = add(TaskBuilder(name).apply(block).build())
 }
 
 class TechnicalSkillsList : ArrayList<TechnicalSkill>() {
-    infix fun String.level(level: Int) {
-        add(TechnicalSkill(this, level))
-    }
+   internal infix fun String.level(level: Int) = add(TechnicalSkill(this, level))
 }
 
 class SoftSkillsList : ArrayList<SoftSkill>() {
-    infix fun String.level(level: Int) = add(SoftSkill(this, level))
+   internal infix fun String.level(level: Int) = add(SoftSkill(this, level))
 }

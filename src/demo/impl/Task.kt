@@ -8,26 +8,22 @@ class Task(
     private val employee2: Employee,
     private val difficulty: Int
 ) {
-    val outcome: Boolean by lazy {
-        (employee1.totalSkill + employee2.totalSkill > totalDifficulty)
-            .also {
-                printTaskMessage(it)
-            }
-    }
 
-    private val totalDifficulty by lazy {
+    fun getResult(): Boolean = (employee1.totalSkill + employee2.totalSkill > calculateTotalDifficulty())
+
+    private fun calculateTotalDifficulty(): Int {
         val rand = Random.nextDouble()
         val bugProbability = (difficulty.toDouble() / BUG_THRESHOLD.toDouble())
-        if (bugProbability > rand) difficulty + BUG_PENALTY else difficulty
+        return if (bugProbability > rand) difficulty + BUG_PENALTY else difficulty
     }
 
-    private fun printTaskMessage(success: Boolean) {
+    fun printTaskMessage() {
         println(
             "-------------------------------------------------------------------\n" +
-                    "Task '$name' ${if (success) "was completed successfully" else "failed"}\n" +
+                    "Task '$name' ${if (getResult()) "was completed successfully" else "failed"}\n" +
                     "${employee1.name} total skill: ${employee1.totalSkill}\n" +
                     "${employee2.name} total skill: ${employee2.totalSkill}\n" +
-                    "task total difficulty: $totalDifficulty\n" +
+                    "task total difficulty: ${calculateTotalDifficulty()}\n" +
                     "-------------------------------------------------------------------\n"
         )
     }

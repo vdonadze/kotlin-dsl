@@ -3,7 +3,7 @@ package demo.impl
 data class Employee(
     val name: String = "",
     val profession: Profession = Profession.DEV,
-    var experience: Int = 1,
+    val experience: Int = 1,
     val technicalSkills: List<TechnicalSkill> = mutableListOf(),
     val softSkills: List<SoftSkill> = mutableListOf()
 ) {
