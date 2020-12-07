@@ -2,7 +2,7 @@ import demo.impl.*
 import demo.builders.*
 
 fun main() {
-    val project = Project(
+    val projectWithoutDsl = Project(
         name = "Kotlin DSL",
         tasks = listOf(
             Task(
@@ -108,6 +108,6 @@ fun main() {
         threshold = 0.5
     }
 
-    project.outcome
+    projectWithoutDsl.outcome
     projectWithDsl.outcome
 }
