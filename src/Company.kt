@@ -1,5 +1,6 @@
 import demo.impl.*
 import demo.builders.*
+import kotlin.concurrent.timerTask
 
 fun main() {
     val projectWithoutDsl = Project(
@@ -22,7 +23,7 @@ fun main() {
                 ),
                 Employee(
                     name = "Mike",
-                    profession = Profession.DEV,
+                    profession = Profession.DEVELOPER,
                     experience = 3,
                     softSkills = listOf(
                         SoftSkill("Teamwork", 5),
@@ -57,7 +58,7 @@ fun main() {
                 ),
                 Employee(
                     name = "Paul",
-                    profession = Profession.DEV,
+                    profession = Profession.DEVELOPER,
                     experience = 3,
                     softSkills = listOf(
                         SoftSkill("Teamwork", 7)
@@ -75,39 +76,64 @@ fun main() {
         threshold = 0.5
     )
 
+    projectWithoutDsl.tasks.forEach { it.printTaskMessage() }
+    projectWithoutDsl.printProjectMessage()
+
     val projectWithDsl = project {
         name = "Kotlin DSL"
-        tasks {
-            task("task 1") {
-                manager("John") {
-                    experience = 7
-                    softSkills {
-                        "Leadership" level 6
-                        "Problem-solving" level 9
-                    }
-                    technicalSkills {
-                        "Java" level 5
-                        "Kotlin" level 5
-                    }
+        task("task 1") {
+            manager("John") {
+                experience = 7
+                softSkills {
+                    "Leadership" level 6
+                    "Problem-solving" level 9
                 }
-                developer("Mike") {
-                    experience = 3
-                    softSkills {
-                        "Teamwork" level 5
-                        "Critical thinking" level 7
-                    }
-                    technicalSkills {
-                        "Java" level 7
-                        "Kotlin" level 9
-                        "Spring" level 8
-                    }
+                technicalSkills {
+                    "Java" level 5
+                    "Kotlin" level 5
                 }
-                difficulty = 700
             }
+            developer("Mike") {
+                experience = 3
+                softSkills {
+                    "Teamwork" level 5
+                    "Critical thinking" level 7
+                }
+                technicalSkills {
+                    "Java" level 7
+                    "Kotlin" level 9
+                    "Spring" level 8
+                }
+            }
+            difficulty = 700
+        }
+        task("task 2") {
+            manager("John") {
+                experience = 8
+                softSkills {
+                    "Leadership" level 6
+                    "Problem-solving" level 9
+                }
+                technicalSkills {
+                    "Java" level 5
+                    "Kotlin" level 5
+                }
+            }
+            developer("Mike") {
+                experience = 7
+                softSkills {
+                    "Teamwork" level 5
+                    "Critical thinking" level 7
+                }
+                technicalSkills {
+                    "Java" level 7
+                    "Kotlin" level 9
+                    "Spring" level 8
+                }
+            }
+            difficulty = 800
         }
         threshold = 0.5
     }
 
-    projectWithoutDsl.printProjectMessage()
-    projectWithDsl.printProjectMessage()
 }

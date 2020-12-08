@@ -2,7 +2,7 @@ package demo.impl
 
 data class Employee(
     val name: String = "",
-    val profession: Profession = Profession.DEV,
+    val profession: Profession = Profession.DEVELOPER,
     val experience: Int = 1,
     val technicalSkills: List<TechnicalSkill> = mutableListOf(),
     val softSkills: List<SoftSkill> = mutableListOf()
@@ -29,7 +29,7 @@ data class Employee(
     }
 
     private val techSkillMultiplier: Int
-        get() = if (profession == Profession.DEV) SKILL_BONUS else 1
+        get() = if (profession == Profession.DEVELOPER) SKILL_BONUS else 1
 
     private val softSkillMultiplier: Int
         get() = if (profession == Profession.MANAGER) SKILL_BONUS else 1

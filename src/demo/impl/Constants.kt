@@ -1,7 +1,7 @@
 package demo.impl
 
 enum class Profession {
-    DEV,
+    DEVELOPER,
     MANAGER
 }
 
