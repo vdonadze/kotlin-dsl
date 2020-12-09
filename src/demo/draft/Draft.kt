@@ -1,4 +1,4 @@
-package demo.short
+package demo.draft
 
 private enum class Profession {
     DEVELOPER,
