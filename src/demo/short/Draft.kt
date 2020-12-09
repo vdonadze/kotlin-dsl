@@ -1,7 +1,7 @@
 package demo.short
 
 private enum class Profession {
-    DEV,
+    DEVELOPER,
     MANAGER
 }
 
